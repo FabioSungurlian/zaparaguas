@@ -71,6 +71,7 @@
 				position: fixed;
 				left: 51%;
 				top: 6em;
+				width: calc(50% - 1em);
 			}
 			.sidebar nav li {
 				background: #eeeeee;
@@ -79,7 +80,7 @@
 				list-style: none;
 				padding: 0.1em 0.5em;
 				margin-bottom: 5px;
-				margin-right: 38%;
+				margin-right: 45%;
 				transition-duration: 0.15s;
 				transition-property: margin-top, border-bottom-width;
 			}
@@ -97,7 +98,7 @@
 				width: calc(77% - 1em);
 				margin: 0;
 				background: url("http://static3.inventosabsurdos.com/wp-content/uploads/shoes_umbrella.jpg") #eeeeee no-repeat center center;
-				background-size: cover;
+				background-size: contain;
 				position: relative;
 			}
 			.zaparaguas figcaption {
@@ -319,14 +320,22 @@
 		</div>
 		<hr></hr>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<!-- Preparadores -->
+		<!-- funciones -->
 		<script>
-			// añade al buscador las seccion sub-generales de main
-			const H2S = $("main").find("section.sub-general").find("h2");
 			function nav_li(href, text){
 				let li = $(`<li><a href="#${href}">${text}</a></li>`);
 				$(".buscador").append(li);
 			}
+			function contentH(){
+				minH = parseInt($(".sidebar").css("height")) + 20;
+				$(".content").css("min-height", `${minH}px` );
+				$("main").css("min-height", `${minH}px`);
+			}
+		</script>
+		<!-- Preparadores -->
+		<script>
+			// añade al buscador las seccion sub-generales de main
+			const H2S = $("main").find("section.sub-general").find("h2");
 			for(h2 of H2S){
 				nav_li(
 					$(h2).closest("section.sub-general").attr("id"),
@@ -345,6 +354,7 @@
 			for(h2 of H2S){
 				$(h2).html($(`<a><span>-</span>${$(h2).text()}</a>`));
 			}
+			contentH();
 		</script>
 		<!-- El final y el comienzo del arcoiris al mismo tiempo -->
 		<script>
@@ -366,9 +376,7 @@
 					.slideToggle();
 				$(this).find("span")
 					.text( $(this).find("span").text() == "-"? "+" : "-" );
-				minH = parseInt($(".content").css("width")) * 0.55
-				$(".content").css("min-height", minH );
-				$("main").css("min-height", minH);
+				contentH();
 			});
 		</script>
 		<!-- mostrar o esconder buscador-sm -->
@@ -378,7 +386,7 @@
 			});
 		</script>
 		<!-- imagen zaparaguas -->
-		<script>
+		<script async>
 			function imgHeight (){
 
 				let imgH = parseInt($("#zaparaguas").css("width").match(/[\d\.]+/)) *
@@ -390,6 +398,7 @@
 			}
 			imgHeight();
 			$(window).resize(function(){
+				contentH()
 				imgHeight();
 				if ( $(".sidebar").css("display") == "none" ){
 					$(".sidebar").find("#zaparaguas").prependTo('main');
@@ -402,6 +411,7 @@
 			}).on("mouseleave", function(){
 				$(this).trigger("mouseenter");
 			})
+			contentH();
 		</script>
 	</body>
 </html>
