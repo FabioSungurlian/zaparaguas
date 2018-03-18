@@ -1,0 +1,404 @@
+<DOCTYPE html5 />
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Zaparaguas - Un nuevo futuro</title>
+		<style>
+			body {
+				font-size: 16px;
+				font-family: "Open Sans", Arial;
+				padding: 0 10%;
+				color: #111111;
+				background: #eeeeee;
+				transition: background-color 0.5s;
+			}
+			.content {
+				background: white;
+				min-height: 50%;
+			}
+
+			main {
+				width: 48%;
+				padding: 1em 0.5em;
+				float: left;
+				border-right: 2px dashed #999999;
+				background: #efefdd;
+				min-width: 23em;
+				min-height: 100%;
+			}
+			.page-foot {
+				font-size: 75%;
+				color: #666666;
+			}
+
+			.menu-icon {
+				font-size: 3em;
+				position: absolute;
+				top: 0.15em;
+				right: 0.05em;
+				background: transparent;
+				border: 0;
+				display: none;
+			}
+
+			.buscador-sm {
+				list-style: none;
+				border-bottom: 2px dashed #cccccc;
+				position: fixed;
+				top: 5.5em;
+				right: 8%;
+				background: #e4e4e4;
+				width: 15em;
+				border-bottom: 5px solid #ffffff;
+				box-shadow: 0 10px 2px 6px hsla(0, 0%, 0%, 0.4);
+				z-index: 2;
+				padding-left: 0.5em;
+			}
+			.buscador-sm a {
+				color: #444444;
+			}
+			.buscador-sm a:visited {
+				color: #222222;
+			}
+			.buscador-sm a:hover {
+				color: #666666;
+			}
+			.buscador-sm a:focus {
+				color: #aaaaaa;
+			}
+			/* La barra lateral de busqueda dentro de la página */
+			.sidebar {
+				position: fixed;
+				left: 51%;
+				top: 6em;
+			}
+			.sidebar nav li {
+				background: #eeeeee;
+				display: inline-block;
+				border-bottom: 4px solid #aaaaaa;
+				list-style: none;
+				padding: 0.1em 0.5em;
+				margin-bottom: 5px;
+				margin-right: 38%;
+				transition-duration: 0.15s;
+				transition-property: margin-top, border-bottom-width;
+			}
+			.sidebar nav a {
+				color: #666666;
+			}
+			.sidebar nav a:hover {
+				color: #888888;
+			}
+			.sidebar nav li:active {
+				border-bottom-width: 0;
+				margin-top: 5px;
+			}
+			figure.zaparaguas {
+				width: calc(88% - 1em);
+				margin: 0;
+				background: url("http://static3.inventosabsurdos.com/wp-content/uploads/shoes_umbrella.jpg") #eeeeee no-repeat center center;
+				background-size: cover;
+				position: relative;
+			}
+			.zaparaguas figcaption {
+				display: none;
+				background: hsla(0, 0%, 100%, 0.3);
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				text-align: center;
+			}
+			/* título de la página */
+			.título-pag {
+				border-bottom: 3px dashed #aaaaaa;
+			}
+			h1 {
+				text-align: center;
+				padding-bottom: 0.5em;
+				margin: 0;
+				padding-top: 0.2em;
+			}
+			h2 span {
+				font-size: 1.5em;
+				position: relative;
+				top: 0.1em;
+			}
+			h2 a {
+				border: none;
+				background: none;
+				font-size: inherit;
+			}
+			/* título de la seccion */
+			h2 {
+				padding: 0.05em 0.5em;
+				margin: 0;
+				border-bottom: 2px dashed #eeeeee;
+				cursor: pointer;
+			}
+			p:first-of-type {
+				margin-top: 0.5em;
+			}
+			/* Una linea punteada */
+			hr {
+				margin: 0;
+				border-top: 2px dashed #aaaaaa;
+				color: transparent;
+			}
+
+			/* Una especie de comentario, lo pienso usar para citas*/
+			blockquote {
+				padding: 0.2em 0.5em;
+				border-radius: 2%;
+				background: #eeeeee;
+				color: #666666;
+				border-bottom: 2px solid white;
+			}
+			/* el texto de una cita */
+			quote::before, quote::after {
+				font-size: 1.5em;
+				line-height: 1.2;
+			}
+			quote::before {
+				content: "❝";
+				margin-right: 0.3em;
+			}
+			quote::after {
+				content: "❞";
+				margin-left: 0.3em;
+			}
+			/* la descripción de la cita */
+			blockquote cite {
+				margin-left: 10%;
+				display: block;
+			}
+
+			/* asegurandose de que un elemento flotador no se salga de su padre */
+			.clearfix:before, .clearfix:after {
+    		content: "";
+    		display: table;
+			}
+
+			.clearfix:after {
+			    clear: both;
+			}
+
+			.clearfix {
+			    *zoom: 1;
+			}
+
+			/* // // MEDIA QUERIES // // */
+			/* ¿El texto quedo fijo? entonces deberíamos ajustarno a el.*/
+			@media (max-width: 882px){
+				.sidebar {
+					left: calc(25em + 5%);
+				}
+			}
+			@media (max-width: 1250px){
+				body {
+					padding-left: 5%;
+					padding-right: 5%;
+				}
+				/* Elimina barra lateral */
+				@media (min-width: 801px){
+					.buscador-sm {
+						display: none;
+					}
+				}
+				@media (max-width: 800px){
+					figure.zaparaguas {
+						width: calc(100% - 0.5em);
+					}
+					.sidebar {
+						display: none;
+					}
+					.menu-icon {
+						display: inline-block;
+					}
+					main {
+						width: 98%;
+						border-right: 0;
+					}
+					hr {
+						border-top-width: 3px;
+					}
+					@media (max-width: 1040px){
+						blockquote {
+							margin: 0.5em 0.2em;
+						}
+					}
+				}
+			}
+			/* ¿Está el texto siendo apretujado? Entonces deberiamos expandir al
+			máximo la página y permitirle flexibilidad al texto.*/
+			@media (max-width: 29em){
+				body {
+					padding-left: 0;
+					padding-right: 0;
+					margin-left: 0;
+					margin-right: 0;
+				}
+				main {
+					min-width: 0;
+				}
+			}
+		</style>
+
+	</head>
+	<body>
+		<header class="título-pag">
+			<h1>Zaparaguas</h1>
+			<button class="menu-icon">≡</button>
+		</header>
+		<!-- Lo uso para distinguir ente el fondo de la barra lateral y el de toda
+		la página-->
+		<div class="content clearfix">
+			<main>
+				<section class="información general">
+					<section class="descripcion sub-general" id="descripción">
+						<h2>¿Que es eso?</h2>
+						<section class="cuerpo">
+							<p>Traido por Inventos Inutiles SA, está es una inovancion de primer
+								mundo que planea cambiarlo todo. Actualmente está solo disponible
+								para mujeres, ya que ellas son las unicas que aprecian este
+								maravilloso producto.</p>
+							<p>¡Pero no exasperes! <strong>Inventos Inutiles SA</strong> está
+								haciendo una campaña de reivindicación de las zaparaguas basada en
+								anuncios de Telecinco. Los expertos en merchandicing esperan que,
+								en una semana o menos, empiecen a haber reviews de 4 visitas de
+								los zaparaguas en Youtube y, llegado el momento, todos y todas
+								quieran comprar zaparaguas.</p>
+						</section>
+					</section>
+					<section class="utilidad sub-general" id="utilidad">
+						<h2>¿Para que sirve?</h2>
+						<section class="cuerpo">
+							<p>Como dijo el mejor ingenierio mecánico de la historia:</p>
+							<blockquote>
+								<quote>La verdadera pregunta es para que no sirve.</quote>
+								<cite>Albert Einstein - 1994</cite>
+							</blockquote>
+							<p>
+								El uso para el que fue diseñado es el de desviar el agua de manera
+								eficiente de sus zapatillas mientras se camina cómodamente al baile
+								de quinceañera.</p>
+							<p>Cuando no lo esté usando, pongalo en modo exprimidor plegándolo,
+								sáquese la zapatilla durante su baile y entre a la cocina a exprimir
+								naranjas.</p>
+						</section>
+					</section>
+					<section class="accesibilidad sub-general" id="accesibilidad">
+						<h2>¿Donde puedo conseguirlas?</h2>
+						<section class="cuerpo">
+							<p>Si eres de Europa estas de suerte, porque puedes encontrarlas en
+								cualquier tienda. <b>¡A tan solo el triple del precio original!</b></p>
+							<p>Llame ahora al <i>+095 0009 9877 5365</i> para obtener sus
+								zaparaguas ya mismo. Si llamas ahora te respondera una
+								telecomunicadora agotada con un celular del <i>año 1995</i> que
+								hace estática cada 5 segundos; pero despues de 30 minutos
+								escuchando sus quejas la mitad del tiempo y la estática en la
+								otra mitad, le daremos un <b>5% de descuento sin IVA incluido.</b></p>
+						</section>
+					</section>
+				</section>
+				<footer class="page-foot linkable" id="Creditos">
+					<p>por Nacho Camara, Facundo Perreta y Fabio Sungurlian</p>
+				</footer>
+			</main>
+			<aside class="sidebar">
+				<nav class="buscador">
+				</nav>
+				<figure id="zaparaguas" class="zaparaguas">
+					<figcaption>
+						<p>zaparaguas para mujeres</p>
+					</figcaption>
+				</figure>
+			</aside>
+		</div>
+		<hr></hr>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!-- Preparadores -->
+		<script>
+			// añade al buscador las seccion sub-generales de main
+			const H2S = $("main").find("section.sub-general").find("h2");
+			function nav_li(href, text){
+				let li = $(`<li><a href="#${href}">${text}</a></li>`);
+				$(".buscador").append(li);
+			}
+			for(h2 of H2S){
+				nav_li(
+					$(h2).closest("section.sub-general").attr("id"),
+					$(h2).text()
+				);
+			}
+			/* Secciones que no se encuentran en las secciones previas pero que se las
+			quiere tener en el buscador*/
+			let linkables = new Set($("main").find(".linkable"));
+			// ¿Hay un resultado o varios?
+			for(linkable of linkables){
+				let id = $(linkable).attr("id");
+				nav_li(id, id);
+			}
+			$("main").prepend($(".buscador").clone().addClass("buscador-sm").hide());
+			for(h2 of H2S){
+				$(h2).html($(`<a><span>-</span>${$(h2).text()}</a>`));
+			}
+		</script>
+		<!-- El final y el comienzo del arcoiris al mismo tiempo -->
+		<script>
+
+			setInterval(function(){
+				let testColor = $("body").css("background-color");
+				let colors = testColor.match(/\d+/g).map( num => parseInt(num));
+				let RAN_CHOICE = Math.floor(Math.random() * 3);
+				colors[RAN_CHOICE] += Math.random() > 0.5? -5 : 5;
+				color = `rgba(${colors.join(",")}, 1)`
+				$("body").css("background-color", color);
+			}, 500);
+		</script>
+		<!-- Achicamiento y alargamiento de una seccion sub-general -->
+		<script>
+			$("main").find("section.sub-general").on("click", "h2", function(){
+				$(this).closest("section.sub-general")
+					.find("section.cuerpo")
+					.slideToggle();
+				$(this).find("span")
+					.text( $(this).find("span").text() == "-"? "+" : "-" );
+				minH = parseInt($(".content").css("width")) * 0.55
+				$(".content").css("min-height", minH );
+				$("main").css("min-height", minH);
+			});
+		</script>
+		<!-- mostrar o esconder buscador-sm -->
+		<script>
+			$(".título-pag").on("click", "button", function(){
+				$(".buscador-sm").slideToggle();
+			});
+		</script>
+		<!-- imagen zaparaguas -->
+		<script>
+			function imgHeight (){
+
+				let imgH = parseInt($("#zaparaguas").css("width").match(/[\d\.]+/)) *
+					0.69292929292;
+				$("#zaparaguas").css(
+					"height",
+					imgH
+				);
+			}
+			imgHeight();
+			$(window).resize(function(){
+				imgHeight();
+				if ( $(".sidebar").css("display") == "none" ){
+					$(".sidebar").find("#zaparaguas").prependTo('main');
+				} else {
+					$("main").children("#zaparaguas").appendTo(".sidebar");
+				}
+			});
+			$("figure#zaparaguas").on("mouseenter", function(){
+				$(this).children("figcaption").slideToggle();
+			}).on("mouseleave", function(){
+				$(this).trigger("mouseenter");
+			})
+		</script>
+	</body>
+</html>
